@@ -1,1 +1,28 @@
-TYPUS_UPLOAD
+<% unless @typus_upload_assets_loaded %>
+  <% content_for :javascripts do %>
+    <%= javascript_include_tag "typus_upload/application" %>
+  <% end %>
+  <% content_for :stylesheets do %>
+    <style type="text/css">
+      .progress { margin-top: 10px; margin-bottom: 0; }
+    </style>
+  <% end %>
+  <% @typus_upload_assets_loaded = true %>
+<% end %>
+
+<%
+  options = {
+    field_label: 'Attachment',
+    field_value: @item.send(attribute),
+    field_name: "#{resource.to_s.parameterize}[#{attribute}]",
+    preflight_url: "/admin/#{@resource.to_s.pluralize.parameterize}/preflight",
+    bucket_url: "//#{ENV['AWS_BUCKET']}.#{ENV['AWS_PROXY']}"
+  }
+%>
+
+<div class="row">
+  <div class="col-md-6" style="min-height: 120px;">
+    <%= react_component('Typus.UploadField', options) %>
+  </div>
+</div>
+

@@ -1,6 +1,5 @@
 module TypusUpload
   module ClassMethods
-
     def extended_modules
       (class << self; self end).included_modules
     end
