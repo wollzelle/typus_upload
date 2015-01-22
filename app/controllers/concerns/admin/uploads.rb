@@ -30,7 +30,7 @@ module Admin::Uploads
       conditions: [
         ["content-length-range", 0, 500.megabytes],
         { bucket: ENV['AWS_BUCKET'] },
-        { "x-amz-meta-filename" => filename},
+        { "x-amz-meta-filename" => filename },
         { 'Content-Type' => content_type },
         { acl: 'public-read' },
         { key: key }

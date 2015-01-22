@@ -61,8 +61,8 @@ class Typus.Upload
     @set 'progress', Math.round (e.loaded / e.total) * 100
 
   onComplete: (res, status, xhr) =>
-    console.log 'onComplete', xhr.getAllResponseHeaders()
-    @set 'field_value', "#{@bucket_url}/#{@file.name}"
+    location = xhr.getResponseHeader('Location')
+    @set 'field_value', decodeURIComponent(location)
     @set 'status', 'complete'
 
   onError: (xhr, type, error) =>
