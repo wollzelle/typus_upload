@@ -2,6 +2,8 @@
 
 Upload module for [Typus](https://github.com/typus/typus), adds support for uploading files to Amazon S3.
 
+Note: Only uploading is currently supported (no delete).
+
 ## Installation
 
 In your `Gemfile`:
@@ -13,7 +15,7 @@ Note: until `react-rails` 1.0 is released you need to manually include this gem 
 
 ## Configuration
 
-Add your S3 config to your environment variables:
+Add your S3 config to your `ENV` variables:
 
     AWS_BUCKET=<bucket>
     AWS_ACCESS_KEY_ID=<id>
