@@ -1,31 +1,38 @@
-# TypusUpload
+# Typus Upload
 
-TODO: Write a gem description
+Upload module for [Typus](https://github.com/typus/typus), adds support for uploading files to Amazon S3.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+In your `Gemfile`:
 
-```ruby
-gem 'typus_upload'
-```
+    gem 'typus_upload'
+    gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
 
-And then execute:
+Note: until `react-rails` 1.0 is released you need to manually include this gem as a dependency. This will be fixed in the future.
 
-    $ bundle
+## Configuration
 
-Or install it yourself as:
+Add your S3 config to your environment variables:
 
-    $ gem install typus_upload
+    AWS_BUCKET=<bucket>
+    AWS_ACCESS_KEY_ID=<id>
+    AWS_SECRET_ACCESS_KEY=<key>
+    AWS_PROXY=<proxy>
 
-## Usage
+In your model:
 
-TODO: Write usage instructions here
+    class Post < ActiveRecord::Base
+      typus_upload :attachment_url
+    end
 
-## Contributing
+In your Admin controller:
 
-1. Fork it ( https://github.com/[my-github-username]/typus_upload/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+    class Admin::PostsController < Admin::ResourcesController
+      include Admin::Uploads
+    end
+
+    # Files will be uploaded to /posts by default, override this with:
+    def upload_prefix
+      'downloads/'
+    end
