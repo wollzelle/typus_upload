@@ -53,7 +53,7 @@ Typus.UploadField = React.createClass
     </li>
 
   onClickAdd: (e) ->
-    input = @refs.input.getDOMNode()
+    input = @refs.input
     $(input).trigger 'click'
     e.preventDefault()
 
