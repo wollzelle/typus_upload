@@ -24,5 +24,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rails", ">= 4.2.0"
   spec.add_dependency "typus"
   spec.add_dependency "react-rails"
-  spec.add_dependency "sprockets-coffee-react"
 end
