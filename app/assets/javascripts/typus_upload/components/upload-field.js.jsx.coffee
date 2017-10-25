@@ -1,7 +1,8 @@
-Typus.UploadField = React.createClass
+Typus.UploadField = createReactClass
 
   getInitialState: ->
-    {model: new Typus.Upload @props}
+    state =
+      model: new Typus.Upload @props
 
   componentWillMount: ->
     @state.model.on 'change', => @forceUpdate()
